@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MainApp());
-}
+import 'package:path_finder/api/api_client.dart';
+import 'package:path_finder/screens/home_screen.dart';
+import 'package:path_finder/theme/app_theme.dart';
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+void main() => runApp(ShortestPathApp(api: ApiClient()));
+
+class ShortestPathApp extends StatelessWidget {
+  const new({required this.api, super.key});
+
+  final ApiClient api;
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(body: Center(child: Text('Hello World!'))),
+    return MaterialApp(
+      title: 'Shortest path',
+      theme: AppTheme.lightTheme,
+      home: HomeScreen(api: api),
     );
   }
 }
